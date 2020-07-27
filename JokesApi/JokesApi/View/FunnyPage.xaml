@@ -13,17 +13,7 @@
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             <Button Text="Get Joke" Command="{Binding gotoCmd}" />
-            <Grid>
-                <CollectionView ItemsSource="{Binding jokes, Mode=TwoWay}"  SelectionMode="None">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout HorizontalOptions="FillAndExpand" Margin="0" Padding="0">
-                                <Label Text="{Binding joke, Mode=TwoWay}" FontSize="Medium" TextColor="Black" />
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </Grid>
+            <Label Text="{Binding joke, Mode=TwoWay}" FontSize="Medium" TextColor="Black"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

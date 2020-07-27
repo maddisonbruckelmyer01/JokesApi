@@ -1,5 +1,6 @@
 ﻿using JokesApi.Model;
 using Newtonsoft.Json;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -11,22 +12,18 @@ namespace JokesApi.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public string joke;
         public Command gotoCmd { get; set; }
-
-        private Jokes jokes;
 
         public FunnyViewModel()
         {
             gotoCmd = new Command(gotojoke);
-
-            jokes = new Jokes();
         }
         private void gotojoke(object obj)
         {
             GetJoke();
         }
-        string Base_url = "https://sv443.net/jokeapi/v2/joke/Any";
-
+        string Base_url = "https://sv443.net/jokeapi/v2/joke/Any?type=single";
         public async Task<Jokes> GetJoke()
         {
             HttpClient client = new HttpClient();
@@ -37,9 +34,11 @@ namespace JokesApi.ViewModel
             {
                 var result = await response.Content.ReadAsStringAsync();
 
-                var jokes = JsonConvert.DeserializeObject<Jokes>(result);
+                var json = JsonConvert.DeserializeObject<Jokes>(result);
 
-                return jokes;
+                joke = json.joke.ToString();
+                return json;
+
             }
 
             return null;
