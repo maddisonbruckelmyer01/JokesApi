@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Jokes="clr-namespace:JokesApi.Model"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="JokesApi.View.FunnyPage">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Button Text="Get Joke" Command="{Binding gotoCmd}" />
+            <Grid>
+                <CollectionView ItemsSource="{Binding jokes, Mode=TwoWay}"  SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout HorizontalOptions="FillAndExpand" Margin="0" Padding="0">
+                                <Label Text="{Binding joke, Mode=TwoWay}" FontSize="Medium" TextColor="Black" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
