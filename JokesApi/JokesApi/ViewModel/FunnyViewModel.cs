@@ -37,6 +37,7 @@ namespace JokesApi.ViewModel
                 var json = JsonConvert.DeserializeObject<Jokes>(result);
 
                 joke = json.joke.ToString();
+
                 return json;
 
             }
